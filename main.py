@@ -19,7 +19,7 @@ def fetch_subreddit_posts(sub: str, limit: int = 1000):
     try:
         subreddit = reddit.subreddit(sub)
         posts = []
-        for post in subreddit.top(time_filter='year', limit=limit):
+        for post in subreddit.new(limit=limit):
             post.comments.replace_more(limit=0)
             top_comments = [c.body.strip() for c in post.comments[:3]]
             posts.append({
